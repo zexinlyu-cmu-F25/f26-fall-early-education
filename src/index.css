@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Nunito", ui-rounded, system-ui, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-hand: "Caveat", cursive;
+  --color-paper: #fbf5ea;
+  --color-cream: #fffbf4;
+  --color-ink: #3e322a;
+  --color-cocoa: #6b5a4c;
+  --color-clay: #de7462;
+  --color-honey: #f6c35a;
+  --color-sage: #5f7f68;
+  --color-sky: #a9c4c2;
+  --color-blush: #f79a8b;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-paper);
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* soft paper texture */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .42 0 0 0 0 .3 0 0 0 .18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--color-honey);
+  color: var(--color-ink);
+}
+
+.blink {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: blink 5s infinite;
+}
+@keyframes blink {
+  0%, 94%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+
+@keyframes drift {
+  from { transform: translateX(-40px); }
+  to { transform: translateX(40px); }
+}
+.drift {
+  animation: drift 9s ease-in-out infinite alternate;
+}
+
+@keyframes ring {
+  from { transform: scale(0.7); opacity: 0.8; }
+  to { transform: scale(2); opacity: 0; }
+}
+.ring {
+  animation: ring 2s ease-out infinite;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.cork {
+  background-color: #d9b48a;
+  background-image:
+    radial-gradient(rgb(120 80 45 / 0.25) 1px, transparent 1.5px),
+    radial-gradient(rgb(255 240 220 / 0.25) 1px, transparent 1.5px);
+  background-size: 14px 14px, 22px 22px;
+  background-position: 0 0, 7px 9px;
+}
+
+/* on short screens the success card drops its detail table so it fits the stage */
+@media (max-height: 760px) {
+  .tall-only { display: none !important; }
+  .short-only { display: block !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blink, .drift, .ring, .marquee { animation: none; }
+  html { scroll-behavior: auto; }
+}
