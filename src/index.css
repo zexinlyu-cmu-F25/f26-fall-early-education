@@ -188,6 +188,15 @@ body::after {
   background-position: 0 0, 7px 9px;
 }
 
+/* role brooches on the hero characters grow on phones, where the figures are tiny */
+.brooch {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@media (max-width: 639px) {
+  .brooch { transform: scale(1.5); }
+}
+
 /* on short screens the success card drops its detail table so it fits the stage */
 @media (max-height: 760px) {
   .tall-only { display: none !important; }

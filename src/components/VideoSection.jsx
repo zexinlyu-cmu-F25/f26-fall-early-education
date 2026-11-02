@@ -22,9 +22,6 @@ export default function VideoSection() {
           <h2 className="title-section mt-2">
             Pickup, <span className="italic">before</span> and <span className="italic">after</span> KidDash.
           </h2>
-          <p className="lead mx-auto mt-5 text-cocoa">
-            Follow one family through the same school day twice: once with phone calls and sign-out sheets, once with a single tap at the gate.
-          </p>
         </div>
 
         <motion.div

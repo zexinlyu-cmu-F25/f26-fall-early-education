@@ -14,6 +14,7 @@ const ADULT = {
   shoulders: [[37, 104], [83, 104]],
   hands: [[26, 158], [94, 158]],
   arm: 12,
+  brooch: [60, 116, 66, 22, 12.5],
 }
 
 const KID = {
@@ -26,6 +27,14 @@ const KID = {
   shoulders: [[42, 98], [78, 98]],
   hands: [[32, 136], [88, 136]],
   arm: 10,
+  brooch: [60, 110, 70, 22, 12.5],
+}
+
+// role pin worn on the chest, drawn above the wobble filter so the lettering stays crisp
+const BROOCH = {
+  teacher: ['TEACHER', '#F6C35A', INK],
+  parent: ['PARENT', '#FFFBF4', INK],
+  student: ['STUDENT', '#F79A8B', INK],
 }
 
 const HAIR = {
@@ -117,6 +126,7 @@ export default function Person({
   glasses = false,
   badge = false,
   phone = false,
+  role,
   className = '',
 }) {
   const g = kid ? KID : ADULT
@@ -165,6 +175,21 @@ export default function Person({
           <g strokeWidth="2.4">{MOUTH[mood] ?? MOUTH.normal}</g>
         </g>
       </g>
+
+      {role && <Brooch at={g.brooch} role={role} />}
     </svg>
+  )
+}
+
+function Brooch({ at: [cx, cy, w, h, size], role }) {
+  const [label, fill, text] = BROOCH[role]
+  return (
+    <g className="brooch">
+      <rect x={cx - w / 2 + 1.5} y={cy - h / 2 + 1.5} width={w} height={h} rx={h / 2} fill={INK} />
+      <rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} rx={h / 2} fill={fill} stroke={INK} strokeWidth="2" />
+      <text x={cx} y={cy} dy="0.36em" textAnchor="middle" fontFamily="Nunito, ui-rounded, sans-serif" fontWeight="900" fontSize={size} fill={text}>
+        {label}
+      </text>
+    </g>
   )
 }
