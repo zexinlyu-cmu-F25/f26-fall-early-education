@@ -21,9 +21,9 @@ export default function App() {
           <Handoff />
           <Marquee />
           <StickyNotes />
+          <Audience />
           <VideoSection />
           <Features />
-          <Audience />
           <CallToAction />
           <Schoolyard />
         </main>

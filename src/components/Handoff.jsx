@@ -8,7 +8,7 @@ import { track } from '../lib/analytics.js'
 const spring = { type: 'spring', stiffness: 160, damping: 18 }
 const START_LINE = { who: 'teacher', text: 'Maya’s all packed up! Who’s here for her today?' }
 
-const TEACHER = { hairStyle: 'bun', hair: '#2E2320', skin: '#F3D2B5', shirt: '#5F7F68', pants: '#5C4A3D', glasses: true, badge: true }
+const TEACHER = { hairStyle: 'bun', hair: '#2E2320', skin: '#F3D2B5', shirt: '#5F7F68', pants: '#5C4A3D', glasses: true }
 const MAYA = { kid: true, hairStyle: 'pigtails', hair: '#6B3E26', skin: '#E8B48F', shirt: '#F6C35A', pants: '#DE7462' }
 const DAD = { hairStyle: 'short', hair: '#3E322A', skin: '#D9A27E', shirt: '#A9C4C2', pants: '#5A6260', phone: true }
 const JORDAN = { hairStyle: 'curly', hair: '#2B1D17', skin: '#8D5A3B', shirt: '#D9A79B', pants: '#554B4A' }
@@ -30,8 +30,8 @@ function Bubble({ children, className = '' }) {
 function Tag({ name, role, ok, hidden = false }) {
   return (
     <div className={`mt-1.5 shrink-0 text-center leading-tight transition-opacity ${hidden ? 'opacity-0' : ''}`}>
-      <p className="font-serif text-[clamp(0.8rem,1.4vw,1.05rem)] font-semibold">{name}</p>
-      <p className="hidden text-[clamp(0.65rem,1.1vw,0.8rem)] text-cocoa sm:block">{role}</p>
+      <p className="font-serif text-[clamp(0.85rem,1.6vw,1.2rem)] font-semibold">{name}</p>
+      <p className="text-[clamp(0.72rem,1.3vw,1rem)] font-semibold text-ink/75">{role}</p>
       {ok !== undefined && (
         <p className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[clamp(0.6rem,1vw,0.72rem)] font-bold ${ok ? 'bg-sage/30 text-[#3F5A47]' : 'bg-blush/50 text-[#8E4639]'}`}>
           {ok ? '✓ ' : '✕ '}
@@ -239,7 +239,7 @@ export default function Handoff() {
         {/* people */}
         <div className="absolute bottom-[3%] left-[1%] flex h-[42%] w-[21%] sm:h-[50%] flex-col items-center sm:left-[3%] sm:w-[17%]">
           {bubble('teacher', 'left')}
-          <Person {...TEACHER} className="min-h-0 w-full flex-1" mood={phase === 'done' ? 'happy' : 'normal'} right={phase === 'done' ? [112, 40] : [118, 150]} />
+          <Person {...TEACHER} role="teacher" className="min-h-0 w-full flex-1" mood={phase === 'done' ? 'happy' : 'normal'} right={phase === 'done' ? [112, 40] : [118, 150]} />
           <Tag name="Ms. Chen" role="2nd grade teacher" />
         </div>
 
@@ -260,6 +260,7 @@ export default function Handoff() {
         >
           <Person
             {...MAYA}
+            role="student"
             className="min-h-0 w-full flex-1"
             mood={phase === 'waiting' && !dragging ? 'normal' : 'happy'}
             left={phase === 'done' ? [-6, 96] : dragging ? [22, 52] : [8, 128]}
@@ -279,7 +280,7 @@ export default function Handoff() {
               />
             )}
           </AnimatePresence>
-          <Person {...DAD} className="relative min-h-0 w-full flex-1" mood={phase === 'waiting' ? 'normal' : 'happy'} {...dadArms} />
+          <Person {...DAD} role="parent" className="relative min-h-0 w-full flex-1" mood={phase === 'waiting' ? 'normal' : 'happy'} {...dadArms} />
           <Tag name="Daniel Lee" role="Maya’s dad" ok />
         </div>
 
@@ -291,7 +292,7 @@ export default function Handoff() {
           className="absolute bottom-[3%] left-[79%] flex h-[42%] w-[20%] sm:h-[50%] flex-col items-center sm:left-[81%] sm:w-[16%]"
         >
           {bubble('jordan', 'right')}
-          <Person {...JORDAN} className="min-h-0 w-full flex-1" mood={say?.who === 'jordan' ? 'oops' : 'normal'} />
+          <Person {...JORDAN} role="parent" className="min-h-0 w-full flex-1" mood={say?.who === 'jordan' ? 'oops' : 'normal'} />
           <Tag name="Jordan K." role="Noah’s mom" ok={false} />
         </motion.div>
 
@@ -327,8 +328,13 @@ export default function Handoff() {
               transition={{ delay: 0.9, type: 'spring', stiffness: 200, damping: 18 }}
               className="absolute inset-x-4 top-28 z-40 mx-auto max-w-md rounded-3xl border-[3px] border-ink bg-cream p-5 shadow-[6px_6px_0_#3E322A] sm:top-auto sm:right-auto sm:bottom-[7%] sm:left-[22%] sm:mx-0 sm:w-[38%] sm:p-7"
             >
-              <p className="font-hand text-3xl text-clay">ding!</p>
-              <p className="font-serif text-2xl leading-tight font-semibold sm:text-3xl">Maya is home safe with her dad.</p>
+              <div className="flex items-center justify-between gap-3">
+                <p className="rounded-full border-2 border-ink bg-sage px-3 py-1 text-xs font-extrabold tracking-wider text-cream uppercase shadow-[2px_2px_0_#3E322A] sm:text-sm">
+                  For Ms. Chen · Teacher
+                </p>
+                <p className="font-hand text-3xl leading-none text-clay">ding!</p>
+              </div>
+              <p className="mt-3 font-serif text-2xl leading-tight font-semibold sm:text-3xl">Maya is home safe with her dad.</p>
               <p className="short-only mt-2 text-sm font-bold text-cocoa sm:hidden">Daniel Lee · NFC ✓ · 3:14 PM · record saved</p>
               <dl className="tall-only mt-4 hidden grid-cols-2 gap-x-4 gap-y-1 rounded-2xl border-2 border-dashed border-ink/30 p-3 text-sm sm:grid">
                 <dt className="text-cocoa">Picked up by</dt>

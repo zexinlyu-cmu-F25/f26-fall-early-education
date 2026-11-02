@@ -6,9 +6,9 @@ import { track } from '../lib/analytics.js'
 const links = [
   { href: '#handoff', label: 'Try it' },
   { href: '#problem', label: 'Why' },
+  { href: '#audience', label: 'For you' },
   { href: '#video', label: 'Video' },
   { href: '#features', label: 'Features' },
-  { href: '#audience', label: 'For you' },
 ]
 
 export default function Navbar() {
