@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { chime } from '../lib/sound.js'
+import { track } from '../lib/analytics.js'
 
 const NOTES = [
   { text: 'Who’s picking up Sofia today??', x: '8%', y: '10%', r: -6, c: '#FBDB94' },
@@ -27,7 +28,10 @@ export default function StickyNotes() {
     if (cleared.has(i) || Math.hypot(info.offset.x, info.offset.y) < 110) return
     const next = new Set(cleared).add(i)
     setCleared(next)
-    if (next.size === NOTES.length) chime()
+    if (next.size === NOTES.length) {
+      chime()
+      track('problem_board_cleared')
+    }
   }
 
   return (

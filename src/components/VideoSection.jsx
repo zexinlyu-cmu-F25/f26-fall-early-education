@@ -1,10 +1,11 @@
 import { motion } from 'motion/react'
 import { VIDEO_URL } from '../config.js'
+import { track } from '../lib/analytics.js'
 
 // turn a normal YouTube/Vimeo link into its embeddable player URL
 function embedUrl(url) {
   const yt = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/)
-  if (yt) return `https://www.youtube-nocookie.com/embed/${yt[1]}`
+  if (yt) return `https://www.youtube.com/embed/${yt[1]}?enablejsapi=1`
   const vimeo = url.match(/vimeo\.com\/(\d+)/)
   if (vimeo) return `https://player.vimeo.com/video/${vimeo[1]}`
   return null
@@ -30,6 +31,7 @@ export default function VideoSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
+          onViewportEnter={() => track('video_section_view')}
           transition={{ type: 'spring', stiffness: 140, damping: 20 }}
           className="relative mt-14 aspect-video overflow-hidden rounded-[2rem] border-[3px] border-ink bg-cream shadow-[8px_8px_0_#3E322A]"
         >
@@ -64,7 +66,7 @@ export default function VideoSection() {
 
         {VIDEO_URL && (
           <p className="mt-6 text-center">
-            <a href={VIDEO_URL} target="_blank" rel="noreferrer" className="font-semibold text-clay underline decoration-2 underline-offset-4 hover:text-ink">
+            <a href={VIDEO_URL} target="_blank" rel="noreferrer" onClick={() => track('video_open')} className="font-semibold text-clay underline decoration-2 underline-offset-4 hover:text-ink">
               Open the video in a new tab ↗
             </a>
           </p>

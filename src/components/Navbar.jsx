@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import Logo from './Logo.jsx'
+import { track } from '../lib/analytics.js'
 
 const links = [
   { href: '#handoff', label: 'Try it' },
@@ -25,7 +26,7 @@ export default function Navbar() {
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <a href="#contact" className="hidden rounded-full border-2 border-ink bg-clay px-5 py-2 font-bold text-cream transition hover:-translate-y-0.5 hover:shadow-[0_3px_0_#3E322A] sm:block">
+          <a href="#contact" onClick={() => track('cta_click', { location: 'navbar' })} className="hidden rounded-full border-2 border-ink bg-clay px-5 py-2 font-bold text-cream transition hover:-translate-y-0.5 hover:shadow-[0_3px_0_#3E322A] sm:block">
             Sign up
           </a>
           <button
