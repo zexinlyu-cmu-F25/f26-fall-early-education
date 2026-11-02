@@ -5,7 +5,7 @@ import Logo from './Logo.jsx'
 const links = [
   { href: '#handoff', label: 'Try it' },
   { href: '#problem', label: 'Why' },
-  { href: '#how', label: 'How it works' },
+  { href: '#video', label: 'Video' },
   { href: '#features', label: 'Features' },
   { href: '#audience', label: 'For you' },
 ]
