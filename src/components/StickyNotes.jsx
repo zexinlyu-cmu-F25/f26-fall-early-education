@@ -35,14 +35,14 @@ export default function StickyNotes() {
   }
 
   return (
-    <section id="problem" className="scroll-mt-28 py-24 sm:py-32">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
+    <section id="problem" className="section">
+      <div className="page grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] min-[1100px]:gap-14">
         <div>
-          <p className="-rotate-2 font-hand text-3xl text-clay">why we built it</p>
-          <h2 className="mt-2 font-serif text-5xl leading-[1.02] font-semibold tracking-tight sm:text-6xl">
+          <p className="eyebrow -rotate-2">why we built it</p>
+          <h2 className="title-section mt-2">
             Right now, dismissal runs on <span className="italic">sticky notes.</span>
           </h2>
-          <p className="mt-6 max-w-md text-lg text-cocoa">
+          <p className="lead mt-5 text-cocoa">
             Without real-time information or organized records, pickup means delays, confusion, and a real risk of a
             child going home with the wrong person.
           </p>

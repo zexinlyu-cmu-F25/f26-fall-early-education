@@ -65,17 +65,17 @@ export default function CallToAction() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-24 px-4 pt-8 pb-16 sm:px-6">
-      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[3rem] border-[3px] border-ink bg-clay px-6 py-20 text-center text-cream shadow-[10px_12px_0_#3E322A] sm:px-16 sm:py-28">
+    <section id="contact" className="page scroll-mt-24 pt-8 pb-16">
+      <div className="relative overflow-hidden rounded-[3rem] border-[3px] border-ink bg-clay px-6 py-14 text-center text-cream shadow-[10px_12px_0_#3E322A] sm:px-16 sm:py-20 min-[1600px]:py-28">
         <div className="absolute -top-24 -right-24 size-72 rounded-full border-[3px] border-ink bg-honey" />
         <div className="absolute -bottom-20 -left-16 size-56 rounded-full border-[3px] border-ink bg-blush" />
-        <p className="relative rotate-[-3deg] font-hand text-3xl text-ink">make this experience your experience</p>
-        <h2 className="relative mt-3 font-serif text-[clamp(2.6rem,7vw,5.6rem)] leading-[0.95] font-semibold tracking-tight">
+        <p className="eyebrow relative rotate-[-3deg] text-ink">make this experience your experience</p>
+        <h2 className="title-display relative mt-3">
           Make 3:00 PM
           <br />
           <span className="italic">the calmest part of the day.</span>
         </h2>
-        <p className="relative mx-auto mt-6 max-w-lg text-lg text-cream/90">
+        <p className="lead relative mx-auto mt-5 max-w-lg text-cream/90">
           We’re piloting KidDash with elementary schools. Leave your name and email and we’ll let you know when KidDash launches.
         </p>
         {status === 'done' ? (

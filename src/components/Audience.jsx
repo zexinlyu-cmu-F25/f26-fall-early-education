@@ -24,8 +24,8 @@ export default function Audience() {
   const m = MODES[mode]
 
   return (
-    <section id="audience" className="scroll-mt-24 py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section id="audience" className="section">
+      <div className="page">
         <div className="flex justify-center">
           <div className="inline-flex rounded-full border-2 border-ink bg-cream p-1.5 shadow-[3px_3px_0_#3E322A]">
             {Object.entries(MODES).map(([key, v]) => (
@@ -48,11 +48,11 @@ export default function Audience() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -24 }}
             transition={{ duration: 0.35 }}
-            className="mt-14 grid items-center gap-10 rounded-[2.5rem] border-[3px] border-ink p-8 shadow-[8px_8px_0_#3E322A] sm:p-12 lg:grid-cols-[1fr_auto]"
+            className="mt-10 grid items-center gap-10 rounded-[2.5rem] border-[3px] border-ink p-8 shadow-[8px_8px_0_#3E322A] sm:p-12 lg:grid-cols-[1fr_auto]"
             style={{ background: m.bg }}
           >
             <div>
-              <h3 className="font-serif text-4xl leading-tight font-semibold sm:text-5xl">{m.headline}</h3>
+              <h3 className="title-section">{m.headline}</h3>
               <ul className="mt-8 grid gap-3 sm:grid-cols-2">
                 {m.points.map((p, i) => (
                   <motion.li
