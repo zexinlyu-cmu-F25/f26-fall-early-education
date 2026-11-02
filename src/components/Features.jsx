@@ -61,8 +61,8 @@ function Card({ f, i }) {
       <div className="px-6 pt-6 sm:px-8 sm:pt-8">{f.art}</div>
       <div className="mt-2 flex-1 border-t-[3px] border-ink bg-cream px-6 py-6 sm:px-8">
         <p className="font-hand text-xl text-clay">{f.who}</p>
-        <h3 className="font-serif text-2xl leading-tight font-semibold sm:text-3xl">{f.title}</h3>
-        <p className="mt-2 text-lg leading-snug text-cocoa">{f.body}</p>
+        <h3 className="title-card">{f.title}</h3>
+        <p className="body-copy mt-2 text-cocoa">{f.body}</p>
       </div>
     </motion.article>
   )
@@ -70,15 +70,15 @@ function Card({ f, i }) {
 
 export default function Features() {
   return (
-    <section id="features" className="scroll-mt-24 py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="text-center">
-          <p className="rotate-[-2deg] font-hand text-3xl text-clay">what’s inside</p>
-          <h2 className="mt-2 font-serif text-5xl leading-[1.02] font-semibold tracking-tight sm:text-6xl">
+    <section id="features" className="section">
+      <div className="page">
+        <div className="section-head text-center">
+          <p className="eyebrow rotate-[-2deg]">what’s inside</p>
+          <h2 className="title-section mt-2">
             Little things that make pickup <span className="italic">feel easy.</span>
           </h2>
         </div>
-        <div className="mt-16 grid gap-10 md:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-2 min-[1100px]:gap-10">
           {FEATURES.map((f, i) => (
             <Card key={f.title} f={f} i={i} />
           ))}

@@ -167,7 +167,7 @@ export default function Handoff() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
-          className="font-serif text-[clamp(2.1rem,4.8vw,4rem)] leading-[1] font-semibold tracking-[-0.02em]"
+          className="title-hero"
         >
           Every child, into the{' '}
           <span className="relative inline-block italic text-clay">

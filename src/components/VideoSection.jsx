@@ -15,14 +15,14 @@ export default function VideoSection() {
   const src = VIDEO_URL && embedUrl(VIDEO_URL)
 
   return (
-    <section id="video" className="scroll-mt-24 py-24 sm:py-32">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        <div className="text-center">
-          <p className="rotate-[-2deg] font-hand text-3xl text-clay">two minutes, two afternoons</p>
-          <h2 className="mt-2 font-serif text-5xl leading-[1.02] font-semibold tracking-tight sm:text-6xl">
+    <section id="video" className="section">
+      <div className="page-narrow">
+        <div className="section-head text-center">
+          <p className="eyebrow rotate-[-2deg]">two minutes, two afternoons</p>
+          <h2 className="title-section mt-2">
             Pickup, <span className="italic">before</span> and <span className="italic">after</span> KidDash.
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-cocoa">
+          <p className="lead mx-auto mt-5 text-cocoa">
             Follow one family through the same school day twice: once with phone calls and sign-out sheets, once with a single tap at the gate.
           </p>
         </div>
@@ -33,7 +33,7 @@ export default function VideoSection() {
           viewport={{ once: true, amount: 0.3 }}
           onViewportEnter={() => track('video_section_view')}
           transition={{ type: 'spring', stiffness: 140, damping: 20 }}
-          className="relative mt-14 aspect-video overflow-hidden rounded-[2rem] border-[3px] border-ink bg-cream shadow-[8px_8px_0_#3E322A]"
+          className="relative aspect-video overflow-hidden rounded-[2rem] border-[3px] border-ink bg-cream shadow-[8px_8px_0_#3E322A]"
         >
           {src ? (
             <iframe
@@ -57,7 +57,7 @@ export default function VideoSection() {
                   <p className="mt-1 text-sm font-semibold text-cocoa sm:text-base">one tap, one ding, one record</p>
                 </div>
               </div>
-              <p className="absolute top-1/2 left-1/2 -translate-1/2 rotate-[-3deg] rounded-full border-2 border-ink bg-honey px-5 py-2 font-bold whitespace-nowrap shadow-[3px_3px_0_#3E322A]">
+              <p className="absolute bottom-[10%] left-1/2 -translate-x-1/2 rotate-[-3deg] rounded-full border-2 border-ink bg-honey px-5 py-2 font-bold whitespace-nowrap shadow-[3px_3px_0_#3E322A]">
                 ▶ video coming soon
               </p>
             </div>

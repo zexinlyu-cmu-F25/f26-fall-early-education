@@ -8,7 +8,7 @@ export default function Marquee() {
       <div className="relative -ml-[2%] w-[104%] -rotate-1 overflow-hidden border-y-2 border-ink bg-honey py-3">
         <div className="marquee flex w-max gap-8 whitespace-nowrap">
           {[...row, ...row].map((t, i) => (
-            <span key={i} className="flex items-center gap-8 font-hand text-3xl text-ink">
+            <span key={i} className="flex items-center gap-8 font-hand text-2xl text-ink min-[1600px]:text-3xl">
               {t}
               <svg viewBox="0 0 24 24" className="size-5 text-clay" fill="currentColor" aria-hidden="true">
                 <path d="M12 21s-8-4.8-8-10.5A4.5 4.5 0 0 1 12 8a4.5 4.5 0 0 1 8 2.5C20 16.2 12 21 12 21z" />
