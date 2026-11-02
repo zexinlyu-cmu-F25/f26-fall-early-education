@@ -41,12 +41,6 @@ body {
     max-width: 72rem;
     padding-inline: 1.25rem;
   }
-  .page-narrow {
-    margin-inline: auto;
-    width: 100%;
-    max-width: 52rem;
-    padding-inline: 1.25rem;
-  }
   .section {
     padding-block: 4rem;
     scroll-margin-top: 5.5rem;
@@ -99,7 +93,7 @@ body {
   }
 
   @media (min-width: 640px) {
-    .page, .page-narrow { padding-inline: 2rem; }
+    .page { padding-inline: 2rem; }
     .section { padding-block: 5rem; }
     .section-head { margin-bottom: 3rem; }
     .eyebrow { font-size: 1.5rem; }
@@ -112,7 +106,6 @@ body {
 
   @media (min-width: 1100px) {
     .page { max-width: 70rem; padding-inline: 2.5rem; }
-    .page-narrow { max-width: 48rem; padding-inline: 2.5rem; }
     .section { padding-block: 5.5rem; }
     .eyebrow { font-size: 1.5rem; }
     .title-hero { font-size: 3.25rem; }
@@ -124,7 +117,6 @@ body {
 
   @media (min-width: 1600px) {
     .page { max-width: 80rem; }
-    .page-narrow { max-width: 60rem; }
     .section { padding-block: 7rem; }
     .section-head { margin-bottom: 4rem; }
     .eyebrow { font-size: 1.75rem; }

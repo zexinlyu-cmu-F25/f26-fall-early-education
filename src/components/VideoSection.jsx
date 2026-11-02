@@ -16,7 +16,7 @@ export default function VideoSection() {
 
   return (
     <section id="video" className="section">
-      <div className="page-narrow">
+      <div className="page">
         <div className="section-head text-center">
           <p className="eyebrow rotate-[-2deg]">two minutes, two afternoons</p>
           <h2 className="title-section mt-2">
