@@ -4,7 +4,7 @@ import Navbar from './components/Navbar.jsx'
 import Marquee from './components/Marquee.jsx'
 import StickyNotes from './components/StickyNotes.jsx'
 import Handoff from './components/Handoff.jsx'
-import HowItWorks from './components/HowItWorks.jsx'
+import VideoSection from './components/VideoSection.jsx'
 import Schoolyard from './components/Schoolyard.jsx'
 import Features from './components/Features.jsx'
 import Audience from './components/Audience.jsx'
@@ -21,7 +21,7 @@ export default function App() {
           <Handoff />
           <Marquee />
           <StickyNotes />
-          <HowItWorks />
+          <VideoSection />
           <Features />
           <Audience />
           <CallToAction />

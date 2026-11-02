@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, useMotionValue, useSpring } from 'motion/react'
 import Burst from './Burst.jsx'
 import { chime } from '../lib/sound.js'
+import { SIGNUP_ENDPOINT } from '../config.js'
 
 function MagneticButton({ children, ...props }) {
   const x = useMotionValue(0)
@@ -27,15 +28,37 @@ function MagneticButton({ children, ...props }) {
   )
 }
 
-export default function CallToAction() {
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
+const field =
+  'w-full rounded-full border-2 border-ink bg-cream px-6 py-4 text-lg text-ink placeholder:text-cocoa/50 focus:ring-4 focus:ring-honey focus:outline-none'
 
-  function handleSubmit(e) {
+export default function CallToAction() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState('idle') // idle | sending | done | error
+
+  async function handleSubmit(e) {
     e.preventDefault()
-    // TODO: send to a backend or form service once one is set up
-    chime()
-    setSubmitted(true)
+    if (!SIGNUP_ENDPOINT) {
+      console.warn('Sign-up form is not connected: set SIGNUP_ENDPOINT in src/config.js')
+      setStatus('error')
+      return
+    }
+    setStatus('sending')
+    try {
+      // sent as text/plain so the browser skips the CORS preflight Apps Script can't answer
+      const res = await fetch(SIGNUP_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ name, email, source: 'landing-page' }),
+      })
+      const data = await res.json()
+      if (!res.ok || !data.ok) throw new Error(`Sign-up failed: ${data.error || res.status}`)
+      chime()
+      setStatus('done')
+    } catch (err) {
+      console.error(err)
+      setStatus('error')
+    }
   }
 
   return (
@@ -50,30 +73,53 @@ export default function CallToAction() {
           <span className="italic">the calmest part of the day.</span>
         </h2>
         <p className="relative mx-auto mt-6 max-w-lg text-lg text-cream/90">
-          We’re piloting KidDash with elementary schools. Sign up and we’ll show you around.
+          We’re piloting KidDash with elementary schools. Leave your name and email and we’ll let you know when KidDash launches.
         </p>
-        {submitted ? (
+        {status === 'done' ? (
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="relative mt-10">
             <Burst x="50%" y={0} />
             <p className="inline-block rotate-[-1deg] rounded-2xl border-2 border-ink bg-cream px-6 py-4 font-serif text-xl font-semibold text-ink shadow-[4px_4px_0_#3E322A]">
-              Ding! You’re on the list. We’ll write to {email}.
+              Ding! Thanks, {name.split(' ')[0]}. We’ll write to {email} when KidDash launches.
             </p>
           </motion.div>
         ) : (
-          <form onSubmit={handleSubmit} className="relative mx-auto mt-10 flex max-w-lg flex-col gap-3 sm:flex-row">
-            <label htmlFor="email" className="sr-only">Email address</label>
+          <form onSubmit={handleSubmit} className="relative mx-auto mt-10 flex max-w-lg flex-col gap-3">
+            <label htmlFor="name" className="sr-only">Your name</label>
             <input
-              id="email"
-              type="email"
+              id="name"
+              type="text"
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@school.edu"
-              className="flex-1 rounded-full border-2 border-ink bg-cream px-6 py-4 text-lg text-ink placeholder:text-cocoa/50 focus:ring-4 focus:ring-honey focus:outline-none"
+              autoComplete="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your name"
+              className={field}
             />
-            <MagneticButton type="submit" className="rounded-full border-2 border-ink bg-honey px-8 py-4 text-lg font-bold text-ink shadow-[4px_4px_0_#3E322A]">
-              Sign up ♥
-            </MagneticButton>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <label htmlFor="email" className="sr-only">Email address</label>
+              <input
+                id="email"
+                type="email"
+                required
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@school.edu"
+                className={`${field} flex-1`}
+              />
+              <MagneticButton
+                type="submit"
+                disabled={status === 'sending'}
+                className="rounded-full border-2 border-ink bg-honey px-8 py-4 text-lg font-bold text-ink shadow-[4px_4px_0_#3E322A] disabled:opacity-60"
+              >
+                {status === 'sending' ? 'Sending…' : 'Sign up ♥'}
+              </MagneticButton>
+            </div>
+            {status === 'error' && (
+              <p role="alert" className="rounded-2xl border-2 border-ink bg-cream px-4 py-2 font-semibold text-ink">
+                Hmm, that didn’t go through. Please try again in a moment.
+              </p>
+            )}
           </form>
         )}
       </div>
