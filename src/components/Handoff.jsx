@@ -3,6 +3,7 @@ import { AnimatePresence, animate, motion, useMotionValue } from 'motion/react'
 import Person from './Person.jsx'
 import Burst from './Burst.jsx'
 import { boop, ding, nope } from '../lib/sound.js'
+import { track } from '../lib/analytics.js'
 
 const spring = { type: 'spring', stiffness: 160, damping: 18 }
 const START_LINE = { who: 'teacher', text: 'Maya’s all packed up! Who’s here for her today?' }
@@ -75,6 +76,7 @@ export default function Handoff() {
     if (phase !== 'waiting') return
     setTapping(true)
     boop()
+    track('demo_tap_in')
     setTimeout(() => {
       ding()
       setTapping(false)
@@ -98,6 +100,7 @@ export default function Handoff() {
       setSay(null)
       setBurst({ key: Date.now(), x: d.left - s.left + d.width / 2, y: d.top - s.top + d.height * 0.25 })
       ding()
+      track('demo_complete')
       return
     }
 

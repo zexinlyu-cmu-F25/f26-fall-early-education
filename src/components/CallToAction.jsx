@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring } from 'motion/react'
 import Burst from './Burst.jsx'
 import { chime } from '../lib/sound.js'
 import { SIGNUP_ENDPOINT } from '../config.js'
+import { track } from '../lib/analytics.js'
 
 function MagneticButton({ children, ...props }) {
   const x = useMotionValue(0)
@@ -55,9 +56,11 @@ export default function CallToAction() {
       if (!res.ok || !data.ok) throw new Error(`Sign-up failed: ${data.error || res.status}`)
       chime()
       setStatus('done')
+      track('generate_lead', { method: 'landing_page_form' })
     } catch (err) {
       console.error(err)
       setStatus('error')
+      track('signup_error')
     }
   }
 
@@ -83,7 +86,7 @@ export default function CallToAction() {
             </p>
           </motion.div>
         ) : (
-          <form onSubmit={handleSubmit} className="relative mx-auto mt-10 flex max-w-lg flex-col gap-3">
+          <form onSubmit={handleSubmit} onFocus={() => status === 'idle' && !name && !email && track('signup_start')} className="relative mx-auto mt-10 flex max-w-lg flex-col gap-3">
             <label htmlFor="name" className="sr-only">Your name</label>
             <input
               id="name"
