@@ -326,7 +326,7 @@ export default function Handoff() {
               animate={{ opacity: 1, y: 0, scale: 1, rotate: -1 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ delay: 0.9, type: 'spring', stiffness: 200, damping: 18 }}
-              className="absolute inset-x-4 top-28 z-40 mx-auto max-w-md rounded-3xl border-[3px] border-ink bg-cream p-5 shadow-[6px_6px_0_#3E322A] sm:top-auto sm:right-auto sm:bottom-[7%] sm:left-[22%] sm:mx-0 sm:w-[38%] sm:p-7"
+              className="absolute inset-x-4 top-28 z-40 mx-auto max-w-md rounded-3xl border-[3px] border-ink bg-cream p-5 shadow-[6px_6px_0_#3E322A] done-card sm:top-auto sm:right-auto sm:bottom-[7%] sm:left-[22%] sm:mx-0 sm:w-[38%] sm:p-7"
             >
               <div className="flex items-center justify-between gap-3">
                 <p className="rounded-full border-2 border-ink bg-sage px-3 py-1 text-xs font-extrabold tracking-wider text-cream uppercase shadow-[2px_2px_0_#3E322A] sm:text-sm">
@@ -335,8 +335,8 @@ export default function Handoff() {
                 <p className="font-hand text-3xl leading-none text-clay">ding!</p>
               </div>
               <p className="mt-3 font-serif text-2xl leading-tight font-semibold sm:text-3xl">Maya is home safe with her dad.</p>
-              <p className="short-only mt-2 text-sm font-bold text-cocoa sm:hidden">Daniel Lee · NFC ✓ · 3:14 PM · record saved</p>
-              <dl className="tall-only mt-4 hidden grid-cols-2 gap-x-4 gap-y-1 rounded-2xl border-2 border-dashed border-ink/30 p-3 text-sm sm:grid">
+              <p className="mt-2 text-sm font-bold text-cocoa sm:hidden">Daniel Lee · NFC ✓ · released by Ms. Chen · 3:14 PM</p>
+              <dl className="done-details mt-4 hidden grid-cols-2 gap-x-4 gap-y-1 rounded-2xl border-2 border-dashed border-ink/30 p-3 text-sm sm:grid">
                 <dt className="text-cocoa">Picked up by</dt>
                 <dd className="text-right font-bold">Daniel Lee · NFC ✓</dd>
                 <dt className="text-cocoa">Released by</dt>

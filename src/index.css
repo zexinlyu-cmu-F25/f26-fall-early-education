@@ -197,10 +197,10 @@ body::after {
   .brooch { transform: scale(1.5); }
 }
 
-/* on short screens the success card drops its detail table so it fits the stage */
-@media (max-height: 760px) {
-  .tall-only { display: none !important; }
-  .short-only { display: block !important; }
+/* on short laptop windows the success card tightens up so its detail table still fits the stage */
+@media (min-width: 640px) and (max-height: 760px) {
+  .done-card { padding: 1.25rem 1.5rem; }
+  .done-card .done-details { margin-top: 0.75rem; padding: 0.5rem 0.75rem; row-gap: 0; font-size: 0.8125rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
